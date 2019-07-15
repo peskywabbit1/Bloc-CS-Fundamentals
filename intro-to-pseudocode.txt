@@ -1,0 +1,99 @@
+
+
+Why do programmers use pseudocode?
+
+It helps programmers to develop algorithms task by task. It is meant for humans to read and brainstorm before they begin to code the program. This is to read pseudocode allows the programmer and others to understand the intentions of the code.  
+
+
+If you run pseudocode on your computer what would happen?
+
+If I run a pseudocode on my computer, nothing will happen.  The computer cannot read pseudocode.  
+
+
+Programming Assignment:
+
+Write the following algorithms in pseudocode:
+
+1.Create a function that takes two numbers and prints out the greater number.
+
+FUNCTION NAME (INPUT first number,
+INPUT second number)
+IF first number is greater than second number
+THEN PRINT the first number
+ELSE PRINT second number
+
+END FUNCTION
+
+or 
+
+FUNCTION numbers (array)
+THEN 
+FOR LOOP (var i=0; i < array.length; i++)
+THEN
+
+var greaterNumber = Math.max.apply{MATH, array[i]});
+
+RETURN greaterNumber;
+
+
+PRINT greaterNumber([[first number, second number]])
+
+END FOR
+END FUNCTION
+
+
+
+
+2.Create a function that prints out the numbers from 1 to 100.
+
+VAR numbers = NAME ARRAY (largest number)
+POPULATE ARRAY 1- 100 With a 
+FOR LOOP i<100 TRUE
+THEN numbers [i] = i + 1
+
+PRINT NUMBERS in array 1-100
+FOR LOOP i < numbers.length  
+PRINT numbers [i];
+
+
+END FOR 
+END FUNCTION
+
+
+3.Create a function that searches for a specific entry in a phonebook.
+
+
+VAR phoneBook = ARRAY
+
+FUNCTION phonebookSearch(entry)
+FOR LOOP
+IF entry == item
+RETURN item
+FUNCTION CALL('Dave')
+END IF
+END FOR
+END FUNCTION
+
+
+
+4.Using the pseudocode you wrote for the previous question, implement it in any computer language of your choice.
+
+let phoneBook = ["Sharon", "Tom", "Dave", "Lisa", "Kerry"];
+
+let entry = "Dave"
+
+function phoneBookSearch(entry) {
+    for(var i=0; i < phoneBook.length; i++) {
+        if(phoneBook[i] === entry )
+ {
+            console.log("Found " + entry + " at index " + i);
+        }
+    }
+   console.log("The name " + entry + " was not found");
+}
+
+phoneBookSearch(entry);
+
+
+
+
