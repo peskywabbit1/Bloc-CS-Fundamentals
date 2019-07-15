@@ -44,12 +44,12 @@ A: The following is a clean code. It doesn't have to be refactored. It is nested
 
 FUNCTION calcPercent(sum, total)
  IF NOT(total = 0) THEN
-     SET percentage to sum / total * 100
+   SET percentage to sum / total * 100
  ELSE
    PRINT "Sorry, cannot divide by 0"
  END IF
 
- PRINT percentage
+   PRINT percentage
 END FUNCTION
 
 
@@ -72,15 +72,22 @@ END FUNCTION
 
 Refactor:
 
-FUNCTION checkOutCustomer(subTotal, discountRate, paymentType)
-   //We don't need the total amount at the beginning
-   IF paymentType = 'CASH' THEN 
-       PRINT "Change due: " + amount - subTotal * discountRate + (subTotal * tax) // amount paid by cash
-   ELSE IF paymentType = 'CREDIT CARD' THEN
-       CALL getPayment RETURNING amount
-       PRINT "Your credit card has been charged: " + subTotal * discountRate + (subTotal * tax) //amount paid by credit card
-   END IF
+FUNCTION checkoutCustomer(subTotal, discountRate)
+  PRINT "Your total due is: " + subTotal * discountRate + (subTotal * tax)
+
 END FUNCTION
+
+FUNCTION paymentType()
+   SET cash to "Change due: " + amount - subTotal * discountRate + (subTotal * tax)
+   SET creditCard "Your credit card has been charged: " + subTotal * discountRate + (subTotal * tax)
+
+  IF paymentType = "cash" THEN 
+   PRINT cash
+  ELSE
+    PRINT creditCard
+  END IF
+END FUNCTION 
+
 
 b. The following function checks out a book if there are no issues with the guest's account. 
 
@@ -149,63 +156,74 @@ END
 
 Refactor: 
 
-FUNCTION checkStatusAndOffer
-	IF customer.hasCheckingAccount AND customer.hasCreditCard THEN
-	  print balance 
-	ELSE if customer.hasCheckingAccount AND NOT customer.hasCreditCard THEN
-	CALL offerCreditCard
-	ELSE CALL offerCheckingAccount AND offerCreditCard
- // combine the credit card offer, create new account for customer, and the status in one function
-FUNCTION deposit(amount)
-    SET balance to balance + amount
+CLASS BankAccount
+ FUNCTION displayBalance
+ PRINT balance
+END FUNCTION
+
+ FUNCTION deposit(amount)
+  SET balance to balance + amount
+ END FUNCTION
+ 
+ FUNCTION withdraw(amount)
+  IF balance > amount THEN
+   SET balance to balance - amount
+  END IF
+END FUNCTION
+
+END CLASS
+
+CLASS Customer
+ FUNCTION creditCardOffer
+  IF NOT(customer.hasCreditCard) THEN
+   CALL offerCreditCard
+  END IF
  END FUNCTION
 
- FUNCTION withdraw(amount)
-     IF balance > amount THEN
-       SET balance to balance - amount
-     END
- END FUNCTION
+ FUNCTION checkStatus
+  IF NOT(customer.hasCheckingAccount) THEN
+   CALL offerCheckingAccount
+  END IF
+ END FUNCTION 
+
+END CLASS
+
 
 6. 
 Q: Square Given an array of integers, find out whether the sum of the integers is a perfect square. If it is a perfect square, return the square root () otherwise return the sum.
 
 A:
-function square(arr) {
-	let sum = 0;
-   for (var i = 0; i < arr.length; i++){
-	sum += arr[i];  		
-      }
-   if (sum > 0 && Math.sqrt(sum) % 1 === 0){         
-	return Math.sqrt(sum);      
-   } else {
-	return sum;
-      }
-  square([3,4,5,1,8,9]);
+let integers = [10,1,4,6,1,1,2];
+let sumIntegers = integers.reduce((total, item ) => total + item);
+let squared = Math.sqrt(sumIntegers); 
 
+function isSquared() {
+ if(sumIntegers % squared === 0) {
+  return squared;
+ } else {
+  return sumIntegers;
+  }
+ }
 
-Notes to self:
- // this mean sum = sum + arr[i], which adds all the integers in the array
-// % = remainder of the divided numbers
-// method; Math.sqrt(x) = Returns the positive square root of a number
+isSquared(integers);
+
 
 
 7. 
 Q: Duplicate Given an array of integers, find out whether the array contains any duplicate elements. The function should return true if any value appears at least twice in the array, and false if every element is distinct.
 
 A:
-function duplicate(arr) {
-    for (i = 0; i < arr.length; i++){
-	for (j = i +1; j < arr.length; j++){
-	  if ( [i] = [j]){
-		return true;
-		} else {
-		return false;
-		}
-     duplicate([1,2,3,4,4,5]);
+function isDuplicates(initialArray) {
+ let sortedArray = initialArray.sort();
+ for (let i = 0; i < sortedArray.length - 1; i++) {
+ for (let j = i + 1; j < sortedArray.length; j++) {
+ if (sortedArray[i] === sortedArray[j]) {
+ return true;
+  }
+ }
+}
+ return false;
+}
 
-
-
-
-
-
+//note to self: Sorts before checking
 
