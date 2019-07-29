@@ -19,7 +19,7 @@ PROGRAMMING QUESTIONS
 
 Before beginning to code, write out a plan explaining how to solve the question.
 
-The linked list push function should take a value, create a node, and add it to the end of a list. Below is pseudocode for a push function for a singly linked list. However, there is something wrong with it. Submit both an explanation of the bug and a functional implementation of the method.
+1. The linked list push function should take a value, create a node, and add it to the end of a list. Below is pseudocode for a push function for a singly linked list. However, there is something wrong with it. Submit both an explanation of the bug and a functional implementation of the method.
 
 FUNCTION push(element)
 CREATE node
@@ -36,6 +36,57 @@ END FUNCTION
 
 
 
+EXPLANATION OF THE BUG: The functions is setting the current node to head if head node already exists. There can only be one head node in a linked list, the starting element. The current node should be set to the newly created node at the end of the list. The function should read as follows: 
+
+FUNCTION push(element)
+  CREATE node
+  SET node.value TO element
+  SET node.next TO null
+
+  IF the head node does not exist
+    THEN SET head to node
+  ELSE
+    SET current to node
+  END IF
+END FUNCTION
+
+
+FUNCTIONAL IMPLEMENTATION OF THE METHOD:
+
+function LinkedList () {
+  this.head = null
+  this.size = 0
+}
+
+LinkedList.prototype = {
+  createNode: function(element) {
+    return {
+      data: element,
+      next: null
+    }
+  },
+  push: function(element) {
+    let current.newNode = this.createNode(element);
+    if (this.head == null) {
+      this.head = newNode
+    }
+    else {
+      current = this.head
+      while(current.next != null) {
+        current = current.next
+      }
+      current.next = newNode
+    }
+    this.size++
+  }
+}
+
+let newList = new LinkedList()
+newList.createNode("head node")
+newList.push("current node")
+newList.push("node 2")
+console.log(newList)
+
 
 
 
@@ -44,7 +95,108 @@ END FUNCTION
    Input: a -> c -> d -> d -> a
    Output: a -> c -> d
 
+
+function list(headNode) {
+    this.headNode = null;
+}
+
+list.prototype.add = function(element) {
+    let node = {
+        value: element,
+        next: null
+    }
+    if (this.headNode == null) {
+        this.headNode = node;
+        return this.headNode;
+    } else {
+        let current = this.headNode;
+        while (current.next) {
+            current = current.next;
+        }
+        current.next = node;
+        return this.headNode;
+    }
+}
+
+list.prototype.duplicate = function() {
+    if (!this.headNode || !this.headNode.next) {
+        return "No duplicate nodes found!"
+    }
+    let current = this.headNode;
+    while (current) {
+        let previousNode = current;
+        let nextNode = current.next;
+        while (nextNode) {
+            if (current.value === nextNode.value) {
+                previousNode.next = nextNode.next;
+                nextNode = nextNode.next;
+            } else {
+                previousNode = nextNode;
+                nextNode = nextNode.next;
+            }
+        }
+        current = current.next;
+    }
+    return this.headNode
+};
+
+list.prototype.add("1");
+list.prototype.add("1");
+list.prototype.add("3");
+list.prototype.add("3");
+list.prototype.add("4");
+list.prototype.add("4");
+
+let duplicate = list.prototype.duplicate();
+console.log(duplicate);
+
+
+
+
+
 3. Given an unsorted singly linked list, reverse it.
    Example
    Input: a -> b -> c -> d
    Output: d -> c -> b -> a
+
+
+function list(headNode) {
+    this.headNode = null;
+}
+
+list.prototype.add = function(element) {
+    let node = {
+        value: element,
+        next: null
+    }
+    if (this.headNode == null) {
+        this.headNode = node;
+        return this.headNode;
+    } else {
+        let current = this.headNode;
+        while (current.next) {
+            current = current.next;
+        }
+        current.next = node;
+        return this.headNode;
+    }
+}
+
+list.prototype.reverse = function() {
+    let previous = null;
+    let current = this.headNode;
+    while (current) {
+        let childNode = current.next;
+        current.next = previous;
+        previous = current;
+        current = childNode;
+        this.headNode = previous;
+    }
+    return this.headNode;
+};
+
+list.prototype.add("red");
+list.prototype.add("blue");
+list.prototype.add("orange");
+
+console.log(list.prototype.reverse());
