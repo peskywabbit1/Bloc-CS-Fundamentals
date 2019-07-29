@@ -15,11 +15,9 @@ They are different types of data structures, but they both enable engineers to r
 
 3. Imagine you are an engineer tasked with implementing the UNDO and REDO options in a word processor such as Microsoft Word. Which data structure would you use for each option and why?
 
-With UNDO I would implement the LIFO data structure because the user generally wants to undo the last entry they did
+With UNDO I would implement the LIFO data structure because the user generally wants to undo the last entry they did.
 
-With REDO I would implement the FIFO, as the user would want to generally repeat the same entry steps. 
-
-
+With REDO I would implement the LIFO, as the user would want to reverse the undo which is the last command on the undo stack. 
 
 PROGRAMMING:
 
@@ -45,10 +43,13 @@ PLAN:
 
 
 
+
+
+
 function reverseString(str) {
  let blocArray = str.split("");  // start with old array
  let resultArray = [];		// create new empty array
- x = blocArray.length;		// decrament letters from the old array
+ x = blocArray.length;		// decrement letters from the old array
  for (i = x; i > -1; i--) {
   resultArray.push(blocArray[i]);	// push letter to last position on the array
 }
