@@ -35,36 +35,6 @@ END IF
 END FUNCTION
 
 
-CHRISTIAN'S ANSWER:
-A: 
-function linkedList(headNode){
-  this.headNode = null;
-}
-
-linkedList.prototype.add = function(element){
-  let node = {
-    value: element,
-    next: null
-  }
-  if(this.headNode == null){
-    this.headNode = node;
-   return this.headNode;
-  } else{
-    let current = this.headNode;
-    while(current.next){
-       current = current.next
-    }
-    current.next = node;
-    return current;
-  }
-}
-
- let log = linkedList.prototype.add("red");
- linkedList.prototype.add("blue");
- linkedList.prototype.add("green");
-console.log(log);
-
-
 
 
 
