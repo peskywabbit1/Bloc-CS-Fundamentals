@@ -1,0 +1,80 @@
+WRITTEN ANSWERS
+
+1. What are some pros and cons of using linked lists instead of arrays?
+
+PROS: Each node is dynamically instantiated in a linked list, so the list never contains any placeholders.  Each node is independent in memory, so that the operating system is able to use any available memory location to store it.  This node memory independence allows linked lists to grow very large.
+
+CONS: Because the nodes are stored anywhere in memory it can be inefficient to access an element within the list.  Elements must be accessed in order, starting from the first node (the head).  
+
+
+
+2. Come up with a real world example of a linked list.
+
+The history section of web browsers, where it creates a linked list of web-pages visited, so that when you check history. or press back button, the previous node's data is fetched.
+
+
+
+PROGRAMMING QUESTIONS
+
+
+Before beginning to code, write out a plan explaining how to solve the question.
+
+The linked list push function should take a value, create a node, and add it to the end of a list. Below is pseudocode for a push function for a singly linked list. However, there is something wrong with it. Submit both an explanation of the bug and a functional implementation of the method.
+
+FUNCTION push(element)
+CREATE node
+SET node.value TO element
+SET node.next TO null
+
+IF the head node does not exist
+ THEN SET head to node
+ELSE
+ SET current to head
+ SET current.next to node
+END IF
+END FUNCTION
+
+
+CHRISTIAN'S ANSWER:
+A: 
+function linkedList(headNode){
+  this.headNode = null;
+}
+
+linkedList.prototype.add = function(element){
+  let node = {
+    value: element,
+    next: null
+  }
+  if(this.headNode == null){
+    this.headNode = node;
+   return this.headNode;
+  } else{
+    let current = this.headNode;
+    while(current.next){
+       current = current.next
+    }
+    current.next = node;
+    return current;
+  }
+}
+
+ let log = linkedList.prototype.add("red");
+ linkedList.prototype.add("blue");
+ linkedList.prototype.add("green");
+console.log(log);
+
+
+
+
+
+
+2. Given an unsorted singly linked list, remove all duplicates from the linked list.
+   Example
+   Input: a -> c -> d -> d -> a
+   Output: a -> c -> d
+
+3. Given an unsorted singly linked list, reverse it.
+   Example
+   Input: a -> b -> c -> d
+   Output: d -> c -> b -> a

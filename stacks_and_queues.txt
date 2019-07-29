@@ -102,20 +102,44 @@ END CLASS
 
 Implement the enqueue and dequeue methods defined in the checkpoint inside your own Queue class.
 
-
-CLASS QUEUE
- FUNCTION enqueue(element)
- THEN push items(element)
- END FUNCTION
-
- FUNCTION dequeue
- THEN shift items()
- END FUNCTION
-END CLASS
+ 
 
 
+class Queue {
+   constructor(){
+     this.elements = []
+   }
+  
+ // enqueue function
 
+  enqueue(element)
+{    
+    this.elements.push(element);
+}
 
+  // dequeue function
 
+  dequeue()
+{
+    if(this.isEmpty())
+        return "Empty";
+    return this.elements.shift();
+}
+  
+isEmpty()
+{
+    return this.elements.length ==0;
+}
+
+}
+
+var queue = new Queue();
+
+queue.enqueue(10)
+queue.enqueue(10)
+
+console.log(queue)
+queue.dequeue()
+console.log(queue)
 
 
