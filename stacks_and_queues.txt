@@ -104,42 +104,33 @@ Implement the enqueue and dequeue methods defined in the checkpoint inside your 
 
  
 
+let groceryList = ["cauliflower", "celery", "milk", "cereal"];
 
-class Queue {
-   constructor(){
-     this.elements = []
-   }
-  
- // enqueue function
-
-  enqueue(element)
-{    
-    this.elements.push(element);
+class Queue{
+  constructor(groceryList){
+    this.groceryList = groceryList;
+  }
+  enqueue(person){
+   groceryList.push(item);
+    return groceryList;
+  }
+  dequeue(groceryList){
+    let temp = groceryList[0];
+    if(typeof temp == "string"){
+     groceryList.shift();
+      return temp;
+    }
+  }
 }
 
-  // dequeue function
-
-  dequeue()
-{
-    if(this.isEmpty())
-        return "Empty";
-    return this.elements.shift();
-}
-  
-isEmpty()
-{
-    return this.elements.length ==0;
+class Procedure extends Queue{
+  constructor(groceryList){
+    super(groceryLine);
+  }
 }
 
-}
+let start = new Procedure(groceryList);
 
-var queue = new Queue();
+//calls the dequeue method: console.log(start.dequeue(groceryList));
 
-queue.enqueue(10)
-queue.enqueue(10)
-
-console.log(queue)
-queue.dequeue()
-console.log(queue)
-
-
+//calls the queue method: console.log(start.enqueue("butter"));
