@@ -101,7 +101,6 @@ let CustomerHash = class {
   }
 };
 
-//the calls below
 let phoneHash= new CustomerHash();
 
 phoneHash.logCustomer(

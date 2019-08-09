@@ -1,0 +1,202 @@
+EXERCISES:
+
+1. What is a binary tree and what makes it unique to other trees?
+
+Binary Tree is a data structure in which each Node may point to a left child and a right child. The very top node is known as the root node. Nodes that do not have any child nodes are called leaf nodes of the binary tree.  A general tree is a data structure in that each node can have infinite number of children.  A General tree can’t be empty, but a binary tree can be.  There is no limit on the degree of node in a general tree. Nodes in a binary tree cannot have more than degree 2.  Subtree of general tree are not ordered.  Subtree of binary tree are ordered. In general tree, root have in-degree 0 and maximum out-degree n.	In binary tree, root have in-degree 0 and maximum out-degree 2. In general tree, each node have in-degree one and maximum out-degree n. In binary tree, each node have in-degree one and maximum out-degree 2. In general tree, each node have in-degree one and maximum out-degree n.	In binary tree, each node have in-degree one and maximum out-degree 2.
+
+
+2. What is a heuristic?
+
+Heuristics are guesses that an algorithm makes to solve a complex problem sooner by sacrificing accuracy and completeness.
+
+3. What is another problem besides the shortest-path problem that requires the use of heuristics?
+
+Knapsack problem: You have a knapsack and a set of item types, each with a weight and value. How many of each item can you pack so that the total weight doesn't exceed the limit and the total value is maximized? This type of problem shows up in many forms across different industries, like financial advisors selecting investments for a portfolio or factories figuring out the optimal way to cut up raw materials. One heuristic is to sort by value/weight ratio when selecting the next item to pack.
+
+Game-playing: For a computer to beat a human at a game (or at least lose respectably), it must pick the move with the greatest chance of success. To really predict success, the computer needs to calculate the entire game tree from current move to final move, anticipating all the moves the human could make in response. For the simple game of Tic-Tac-Toe, thats 362,880362,880362, comma, 880 possible situations, but for a more sophisticated game like Chess, that's 10^{120}! Fortunately, heuristics like "minimax" help prune down the tree of possibilities.
+
+Facility location: Imagine a supermarket chain that has 20 locations in a state and wants to build 5 warehouses to deliver food to the supermarkets. Their goal is to minimize costs and maximize delivery speed. The facility location problem is finding the optimal location for those 5 warehouses. This same problem is faced by web apps that want to distribute their backend servers to respond to user requests quickly. Heuristics like "local search" help narrow down the array of possible locations.
+
+All of these are combinatorial problems, where a computer would need to search an exponentially growing number of combinations to find the optimal answer. Combinatorial problems are quite common in the real world, 
+
+
+
+4. What is the difference between a depth-first search and a breadth-first search?
+
+Depth First Search (DFS): An algorithm for traversing or searching tree or graph data structures. Start at the root and explore as far as possible along each branch before backtracking.
+
+
+Breadth First Search (BFS): An algorithm for traversing or searching tree or graph data structures. Start at the tree root and explore the neighbor nodes first, before moving to the next level neighbors.
+
+
+5. Explain in your own words what an undirected, a-cyclic, unweighted graph is.
+
+The edge connecting two Nodes is ambiguous. It neither starts nor ends at either Node, it merely connects the two like hands in a handshake.  A-cyclic Graphs do not form loops; performing a DFS of an A-cyclic Graph will result in a dead-end.  Conversely, Unweighted graphs do not assign the cost of travel between Nodes.  So basically it's a graph that goes in either direction between nodes, with no value between nodes and does not return to its start point.  
+
+
+6. What kind of graph is a binary search tree?
+
+A BST is a directed, acyclic, and can be an unweighted or weighted graph
+
+
+
+PROGRAMMING QUESTIONS:
+
+For the following questions, describe in words how you could solve the problem and then do so. Use the depiction of the Binary Search Tree to refer to the examples.
+
+
+1. Given a Binary Search Tree and a value, write a function that checks to see whether the value exists within the tree.
+
+Example: The value 10 exists in the tree. The value 23 does not exist in the tree.
+
+I will set up a binary tree where the search input number is larger than the root number.  The search will go down the right of the node and continue going down the right side checking both left and right children until the input number is found.  If number is not found on the right side, it will search the left side of the node and continue down the left side and each child node first left then right, before finding the input number.  When number is found there will be a statement that displays the number is found.   If the searched input number is not found, a statement will display that says number is not found. 
+
+
+
+function locateValue(number) {
+  let BST = {
+    value: 8,
+    left: {
+      value: 3,
+      left: {
+        value: 1
+      },
+      right: {
+        value: 6,
+        right: {
+          value: 7
+        },
+        left: {
+          value: 4
+        }
+      }
+    },
+    right: {
+      value: 10,
+      right: {
+        value: 14,
+        left: {
+          value: 13
+        }
+      }
+    }
+  };
+  let currentNode = BST;
+  while (currentNode) {
+    if (number === currentNode.value) {
+      return `Number ${number} is found in this binary search tree`;
+    } else if (number < currentNode.value) {
+      currentNode = currentNode.left;
+    } else if (number > currentNode.value) {
+      currentNode = currentNode.right;
+    }
+  }
+  return `Number ${number} is not found in this binary search tree.`;
+}
+console.log(locateValue(23));
+
+
+
+2. Given a Binary Search Tree and two nodes, n1 and n2, write a function that finds the distance between the two nodes.
+
+Example: The distance between the nodes 4 and 10 is 4. The distance between the nodes 8 and 10 is 1. The distance between the nodes 1 and 14 is 4.
+
+If both keys are greater than the current node, we move to the right child of the current node. If both keys are smaller than current node, we move to left child of current node.
+If one keys is smaller and other key is greater, current node is Lowest Common Ancestor (LCA) of two nodes. We find distances of current node from two keys and return sum of the distances.
+
+
+function findDist(n1, n2) {
+  if (n1.value == n2.value) {
+    return "Distance is 0.";
+  }
+  let BST = {
+    value: 8,
+    left: {
+      value: 3,
+      left: {
+        value: 1
+      },
+      right: {
+        value: 6,
+        right: {
+          value: 7
+        },
+        left: {
+          value: 4
+        }
+      }
+    },
+    right: {
+      value: 10,
+      right: {
+        value: 14,
+        left: {
+          value: 13
+        }
+      }
+    }
+  };
+
+  return findDist.prototype.findLCA(BST, n1, n2);
+}
+
+findDist.prototype.findLCA = function(BST, n1, n2) {
+  if (BST.value > n1.value && BST.value > n2.value) {
+    return findDist.prototype.findLCA(BST.left, n1, n2);
+  } else if (BST.value < n1.value && BST.value < n2.value) {
+    return findDist.prototype.findLCA(BST.right, n1, n2);
+  }
+  let LCA = BST;
+  return findDist.prototype.calculateDist(LCA, LCA, n1, n2);
+};
+
+let distanceOne = 0;
+let distanceTwo = 0;
+
+findDist.prototype.calculateDist = function(LCA1, LCA2, n1, n2) {
+  let LCAn2 = LCA2;
+  let placeholder = {};
+  if (LCA1.value > n1.value) {
+    distanceOne++;
+    return findDist.prototype.calculateDist(
+      LCA1.left,
+      LCAn2,
+      n1,
+      n2
+    );
+  } else if (LCA1.value < n1.value) {
+    distanceOne++;
+    return findDist.prototype.calculateDist(
+      LCA1.right,
+      LCAn2,
+      n1,
+      n2
+    );
+  }
+  if (LCAn2.value > n2.value) {
+    distanceTwo++;
+    return findDist.prototype.calculateDist(
+      placeholder,
+      LCAn2.left,
+      n1,
+      n2
+    );
+  } else if (LCAn2.value < n2.value) {
+    distanceTwo++;
+    return findDist.prototype.calculateDist(
+      placeholder,
+      LCAn2.right,
+      n1,
+      n2
+    );
+  }
+  return distanceOne + distanceTwo;
+};
+
+console.log(findDist({ value: 3, next: null }, { value: 10, next: null }));
+
+
+
+
+
+
