@@ -1,0 +1,58 @@
+EXERCISES:
+
+1. Using proper pseudo-code, describe the following primitive algorithms:
+
+a. Making coffee;
+FUNCTION makeCoffee
+SET groundCoffee to true
+SET coffeeMachine to true
+SET waterAvailable to true
+ IF groundCoffee, coffeeMachine, waterAvailable are true THEN  
+  call FUNCTION operateCoffeeMachine
+ IF coffeeReady is true THEN
+  call FUNCTION pourCoffee
+END FUNCTION
+
+b. Washing dishes;
+FUNCTION washDishes
+SET dishwasher to INPUT
+SET dishes to INPUT
+SET dirty to true
+ IF dirty THEN
+  call FUNCTION washDishes with dishwasher and dishes
+SET dirty to false
+END FUNCTION 
+
+c. A choice of your own.
+Make peanut butter sandwich:
+FUNCTION makeSandwich
+SET sandwich to false
+SET peanutButter to true
+SET bread to true
+ IF peanutButter & jelly is true THEN
+  call FUNCTION makeSandwich
+SET sandwich to true
+END FUNCTION 
+
+
+
+2. As with the knot algorithm, there may be more than one way to solve the problem. It is essential to try to pick the best algorithm for a situation. Name three companies who created an algorithm that made them successful, e.g., Google's search algorithm. It doesn't need to be a tech example (such as a recipe or manufacturing a product). Google's algorithm produces more relevant results than other search engines; what about each of your cases make them stand out?
+
+a.Stitch Fix: e-commerce Fashion Start Up.  
+The Stitch Fix team collected vast amounts of data on Stitch Fix customers--body dimensions, pattern preferences, what clothes they'd kept, what clothes other people who'd kept those clothes had also kept--to arrive at astonishingly accurate predictions. A Stitch Fix stylist would then take a prediction and determine whether it seemed right for particular shoppers--today resulting in 24 percent of customers sticking with the subscription service for at least nine months, 
+
+b. AMAZON; e-commerce company.
+A9 is what sits behind Amazon’s little search box, deciding which product recommendations to make by using the data from the hundreds of thousands of queries that people have already made. The recommendations are fueled in part by customer shopping preferences and past purchases, as well as a slew of other factors.
+
+c.Yelp: Online directory with reviews for discovering local businesses.
+Yelp turned to machine learning a couple of years ago when it first implemented its picture classification technology. Yelp’s machine learning algorithms help the company’s human staff to compile, categorize, and label images more efficiently – no small feat when you’re dealing with tens of millions of photos.
+
+
+
+3. Hypothesize about what constitutes an efficient algorithm versus an inefficient algorithm.
+
+An efficient algorithm will be time efficient and accurate(fast), space efficient(memory required), complexity(algorithm performance), Function dominance (comparison of cost functions) and Asymptotic dominance(comparison of cost when n is large: Big-O notation). 
+
+An inefficient algorithm will not conform to the DRY principle. Nor will it be accurate.  If an algorithm is fast but inaccurate it is inefficient.  But if it's too slow that's a problem as well.  In regards to Big-O notation, O(n!) O(2^n) and O(n^2) are the worst because they run too slowly. Other inefficient qualities are if it takes up too much space (memory) causing bloat, it is too costly and there are lots of symptomatic bugs.  
+
+
