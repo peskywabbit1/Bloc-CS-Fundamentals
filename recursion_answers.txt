@@ -1,0 +1,91 @@
+EXERCISES:
+
+1. Define and compare recursion and iteration.
+Recursion: The technique where a procedure (i.e., a function) calls itself with parameters incrementally moving toward one of the base cases. It will stop calling itself once it reaches a base case. 
+Iteration: The technique of utilizing a loop to repeat a process until it becomes false. 
+Recursive solutions tend to run slower and are more subject to system limitations than iterative solutions. However, iterative solutions can sometimes be harder to implement. And since loops are great at running straight through a data set, algorithms requiring a pass over a collection works well as an iterative solution (e.g., finding the maximum).
+
+
+
+2. Name five algorithms that are commonly implemented by recursion.
+binary search
+merge sort
+quick sort
+factorial
+fibonacci
+
+
+
+3. When should you use recursion, and when should you avoid recursion? Give examples for each.
+Use Recursion: When an algorithm can be defined as a combination of sub-results starting with known cases, then a recursive solution makes the most sense because that is precisely what it handles (e.g., factorial).
+
+Avoid Recursion: Recursion should be avoided when a function manipulates the parameters/data and and the executed output: finding the Maximum value in an array of numbers or reversing a string would be a good example. ie: The characters could be stored in an array reversed by iterating backward and returned instead of calling the function again and again, each time with more characters attached to the input.
+
+
+4. Compare the recursive and iterative solutions to the three algorithms from the checkpoint (factorial, maximum, and fibonacci). What is similar, and what is different?
+Similar: All solutions to the 3 algorithms in the checkpoint were demonstrated both recursively and iteratively. What was different was how both solutions gained their results.  
+Different: To me, the iteration looked cleaner and made more sense in pseudocode. But, that doesn't mean it's always the best technique.  Iterating allows items in the arrays to be updated step by step and then finally returned.  Recursive technique meant the logic structure followed a loop in code. First going down the loop according to the logic and then coming back up the loop following the logic in a reverse manner. Data not changed.
+Similarities: The similarities between the two types of solutions for the algorithms is that both relied on using previously set data to be used to calculate new data and does that repetitively. 
+
+
+
+5.  Given a multi-dimensional collection (such as an array (an array of arrays)) where the number of dimensions is unknown, write a recursive algorithm to count the number of items in the entire collection.
+
+
+function countItems(array) {
+  let items = 0;
+    if (!Array.isArray(array)) {
+      items++;
+    } else {
+      for (let i = 0; i < array.length; i++) {
+      items += countItems(array[i]);
+      }
+    }
+  return items;
+}
+
+console.log(countItems([["one", "two"], [3, 4], ["five", "six"], [7,8]]));
+
+
+credit: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/isArray 
+The Array.isArray() method determines whether the passed value is an Array.
+
+
+
+6.  A palindrome is a word or phrase whose spelling is the same either direction (e.g., racecar). Write a recursive algorithm to determine if a given word or phrase is a palindrome.
+
+
+function confirmPalindrome(word) {
+ if(word.length <= 1) {
+   return true;
+}
+ else if(word[0] === word[word.length - 1]) {
+    return confirmPalindrome(word.slice(1, word.length - 1));
+}
+    return false;
+};
+
+console.log(confirmPalindrome('radar'));
+console.log(confirmPalindrome('madam'));
+console.log(confirmPalindrome("Jessica"));
+
+
+/*Notes  
+If there is only one character in string
+   return true.
+Else compare first and last characters
+   and recur for remaining substring.
+credit:https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/slice
+*/
+
+
+
+7.  Google Easter Egg: Google the term "recursion". Google will prompt you with "Did you mean: recursion". Explain why this behavior exhibits properties of recursion.
+
+Ha! it's a joke, it brings you back to the same page when you click on "recursion". It keeps repeating itself like a recursion would when called on itself. 
+
+
+
+
+
+
