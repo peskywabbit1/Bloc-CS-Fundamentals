@@ -1,0 +1,77 @@
+EXERCISES
+
+
+SHORT ANSWER:
+
+1. What is a real-life scenario that uses linear search?
+Linear search can be used where list contains random data (rather than ascending or descending order), to find any data we need to check list one by one. So an example of finding something using linear search would be searching for a particular type of animal in a shelter. 
+
+2. What is a real-life scenario that uses binary search?
+Because it's search is "divide" and "conquer" on a pre-sorted collection, binary search is used in the "Akinator" app, where a genie guesses what item you are thinking of based on your answers to 20 questions. For each question answered the app eliminates choices until it eventually narrows down to the item you are thinking in your  head. 
+
+
+3. Given the alphabetically sorted collection in this checkpoint, how many iterations would it take to find the value G using linear search?
+7 iterations.
+
+
+
+4. Given the alphabetically sorted collection in this checkpoint, how many iterations would it take to find the value G using binary search?
+3
+
+5. Given an unsorted collection of a million items, which algorithm would you choose between linear search and binary search? Explain your reasoning.
+Linear search because it works with random unsorted data. 
+
+6. Given a sorted collection of a million items, which algorithm would you choose between linear search and binary search? Explain your reasoning.
+Binary because it's a sorted list and it will lessen the iterations and the search would be much faster than linear. 
+
+
+
+PROGRAMMING ASSIGNMENT:
+
+1. You and a friend have set a wager to see who can find the word "Albatross" in the dictionary the fastest. Write a program to allow you to win the bet.
+
+let dictionary = ["Albatross", "Crane", "Mantis", "Monkey", "Panda", "Tigress", "Viper"];
+
+function searchDictionary(dictionary, word) {
+ let low = dictionary[0];
+ let high = dictionary[dictionary.length - 1];
+ while (low <= high) {
+  let mid = Math.round (
+   (dictionary.indexOf(low) + dictionary.indexOf(high)) / 2 
+  );
+  if (dictionary[mid] > word) {
+    high = dictionary[mid - 1];
+  } else if (dictionary[mid] < word) {
+    low = dictionary[mid + 1];
+  } else {
+    return dictionary[mid];
+  }
+ }
+  return "Word not found.";
+}
+
+console.log(searchDictionary(dictionary, "Albatross"));
+
+
+
+2. You work at a pet store, and a child has asked you to net the only white-spotted goldfish from the fish tank. Write a program that will help you net the right fish.
+
+
+let fishTank = ["green blowfish", "electric tetra", "underwater frog", "white-spotted goldfish", "orange guppy", "orange goldfish"];
+
+function searchFishTank(fishTank, fish) {
+  for (let i = 0; i < fishTank.length; i++) {
+    if (fishTank[i] === fish) {
+     return fishTank[i];
+     } 
+   }
+      return "Fish not found."
+}
+
+console.log(searchFishTank(fishTank, "white-spotted goldfish"));
+
+  
+
+
+
+
