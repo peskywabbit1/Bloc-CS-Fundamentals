@@ -1,0 +1,61 @@
+EXERCISES:
+
+
+1. Implement a solution for bubble sort.
+
+
+let numbers = [15, 21, 12, 7, 22, 77, 68, 6, 4, 8];
+
+  let bubble = function bubbleSort(array) {
+   for (let i = 0; i < array.length; i++) {
+    for (let j = i + 1; j < array.length; j++) {
+      if (array[i] > array[j]) {
+        let temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
+    }
+   }
+  }
+  return array;
+};
+console.log(bubble(numbers));
+
+
+
+2. Write pseudocode for quick sort.
+
+FUNCTION quickSort(array)
+ SET numbers to array
+ SET pivot point to last index of array
+ FOR each index in the array 
+  pivot with the last index
+  IF array[i] is greater than pivot point 
+  PUSH array[i] to right of pivot point
+ ELSE
+  PUSH array [i] to left of pivot point
+END IF
+END FOR
+END FUNCTION
+
+
+
+3. We talked about time complexity in a previous checkpoint, and how to get an idea of the efficiency of an algorithm. After looking at the pseudocode for the above sorting methods, identify why merge sort and quick sort are much more efficient than the others. Walking through each algorithm with a few sample collections may help.
+
+
+
+Merge sort and quick sort utilize the divide and conquer algorithm, so that they don't have to iterate over the same array multiple times.
+
+Merge sort breaks a collection of unsorted (n) items into n sub-collections, until each collection is one individual item.  The items are then considered sorted individually.  Then merge sort merges the individual items to produce sorted sub-collections accordingly by switching the lesser items to the left and the greater items to the right.  Then it merges all the sorted subcollections to produce one totally complete sorted collection.  
+
+Quick sort picks a pivot point and then iterates over each item until the pivot point.  At the pivot point, it places the individual item to the right or left of the pivot item depending on whether it's greater or lesser, respectively.  Then quick sort creates  a subcollection of  items to the right and to the left of the pivot item.  Then recursively applies its pivot function to the new subcollections until all items are in order.  Quick sort then reassembles the totally complete and sorted collection.  
+
+
+
+4. All of the sorts addressed in this checkpoint are known as comparison sorts. Research bucket sort and explain how it works. What is the ideal input for bucket sort?
+
+
+Bucket sort, aka bin sort, is a sorting algorithm that works by distributing the elements of an array into a number of buckets. Each bucket is then sorted individually in the array and merged either using a different sorting algorithm, or by recursively applying the bucket sorting algorithm. 
+
+You can use bucket sort as an external sorting algorithm especially if you need to sort a list that is so huge you can’t fit it into memory. 
+
+

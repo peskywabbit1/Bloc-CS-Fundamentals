@@ -50,7 +50,6 @@ If you get stuck, read through the graphical representation section again.
 
 FUNCTION foo(array)
  FOR each number in the array
-   FOR each number in the array
      print "Hello"
    END FOR
  END FOR
