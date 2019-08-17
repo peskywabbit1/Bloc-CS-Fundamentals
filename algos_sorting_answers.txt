@@ -3,40 +3,54 @@ EXERCISES:
 
 1. Implement a solution for bubble sort.
 
+let array = [15, 21, 12, 7, 22, 77, 68, 6, 4, 8]
 
-let numbers = [15, 21, 12, 7, 22, 77, 68, 6, 4, 8];
-
-  let bubble = function bubbleSort(array) {
-   for (let i = 0; i < array.length; i++) {
-    for (let j = i + 1; j < array.length; j++) {
-      if (array[i] > array[j]) {
-        let temp = array[i];
-        array[i] = array[j];
-        array[j] = temp;
-    }
-   }
-  }
-  return array;
+let bubbleSort = (array) => {
+    let arrayLength = array.length;
+    let swapped;
+    do {
+        swapped = false;
+        for (let i = 0; i < arrayLength; i++) {
+            if (array[i] > array[i + 1]) {
+                let tmp = array[i];
+                array[i] = array[i + 1];
+                array[i + 1] = tmp;
+                swapped = true;
+            }
+        }
+    } while (swapped);
+    return array;
 };
-console.log(bubble(numbers));
+console.log(bubbleSort(array));
+
+credit: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Loops_and_iteration#do...while_statement
 
 
 
 2. Write pseudocode for quick sort.
 
-FUNCTION quickSort(array)
- SET numbers to array
- SET pivot point to last index of array
- FOR each index in the array 
-  pivot with the last index
-  IF array[i] is greater than pivot point 
-  PUSH array[i] to right of pivot point
- ELSE
-  PUSH array [i] to left of pivot point
-END IF
-END FOR
-END FUNCTION
+//NOTE: recursive, needs base case check
 
+FUNCTION quickSort(unsorted)
+  IF unsorted less or equal to 1 
+    RETURN unsorted
+  END IF
+
+  SET pivot equals to unsorted.length - 1 
+  SET left to empty array
+  SET right to empty array 
+
+  FOR each index from 0 to the last index - 1
+   IF unsorted[i] is less than the pivot 
+     PUSH unsorted[i] to left array
+   ELSE 
+      PUSH unsorted[i] to right array
+   END IF 
+  END FOR 
+    REPEAT quickSort function to the right array from pivot position + 1
+    REPEAT quickSort function to the left array from pivot position - 1
+    CONCAT both 
+END FUNCTION
 
 
 3. We talked about time complexity in a previous checkpoint, and how to get an idea of the efficiency of an algorithm. After looking at the pseudocode for the above sorting methods, identify why merge sort and quick sort are much more efficient than the others. Walking through each algorithm with a few sample collections may help.
